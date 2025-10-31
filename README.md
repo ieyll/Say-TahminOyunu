@@ -4,10 +4,10 @@ Bu oyun sayesinde dilediğiniz zaman rakamları birbirinden farklı olmak üzere
 
 
 
-using System;
-using System.Windows.Forms;
-namespace SayıTahminOyunu
-{
+    using System;
+    using System.Windows.Forms;
+    namespace SayıTahminOyunu
+    {
     public partial class Form1 : Form
     {
 
