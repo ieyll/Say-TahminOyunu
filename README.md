@@ -53,7 +53,7 @@ SayiTahminOyunu
 
 | Giriş Ekranı | Kayıt Ekranı | Oyun Ekranı |
 | :---: | :---: | :---: |
-| ![Giriş](SayiTahminOyunu/screenshots/login.png) | ![Kayıt](SayiTahminOyunu/screenshots/register.png) | ![Oyun](SayiTahminOyunu/screenshots/game.png) |
+| ![Giriş](SayıTahminOyunu/screenshots/login.png) | ![Kayıt](SayıTahminOyunu/screenshots/register.png) | ![Oyun](SayıTahminOyunu/screenshots/game.png) |
 
 ## 🎮 Oyun Kuralları
 
