@@ -1,191 +1,120 @@
-# SayıTahminOyunu
-Bu oyun sayesinde dilediğiniz zaman rakamları birbirinden farklı olmak üzere 100 ile 1000 arasında 3 haneli bir sayı tahmin oyunu oynayabilirsiniz. Oyun içerisinde bulunan kontroller doğrultusunda toplam 10 tahmin hakkınız bulunmaktadır. Sayıyı tahmin ettikçe eğer tahmininizdeki sayı veya sayılar gizli sayı içerisinde varsa ve yeri doğruysa "artı" bölümünde kaç sayı doğruysa o yazar. Eğer tahmininizdeki rakamlar gizli sayıdaki rakamlar ile eşleşiyor fakat yeri yanlışsa "eksi" kısmında o kadar rakam yazar. Eğer tahminininiz doğruysa ekranda bir MessageBox ile kazandığınıza dair mesaj alırsınz ve oyun sonlanır, yeniden başlatıp oynayabilirsiniz. 
+# 🎯 Sayı Tahmin Oyunu (C# WinForms)
+
+Kullanıcı giriş/ kayıt sistemi bulunan, süre ve hak bazlı çalışan, skorları veritabanına kaydeden
+çok seviyeli bir **Sayı Tahmin Oyunu**.
+
+Bu proje, **C# WinForms**, **SQL Server** ve temel **OOP prensipleri** kullanılarak geliştirilmiştir.
+
+---
+
+## 🚀 Özellikler
+
+- 👤 Kullanıcı Giriş & Kayıt Sistemi
+- 🔢 3 / 4 / 5 haneli sayı seçenekleri
+- ⏱️ Süre sınırlı oyun mekanizması
+- ❤️ Hak (deneme) sistemi
+- ➕ / ➖ Artı – eksi puan mantığı
+- 🏆 Skorların veritabanına kaydı
+- 📊 Hane sayısına göre **Top 5 Skor Tablosu**
+- 🎨 Renkli tahmin geri bildirimi (doğru/yanlış konum)
+- 🔐 Şifreler hashlenerek saklanır
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+- **C#**
+- **.NET WinForms**
+- **SQL Server**
+- **ADO.NET**
+- **Git & GitHub**
+- **Object Oriented Programming (OOP)**
+
+---
+
+## 📂 Proje Yapısı
+
+SayiTahminOyunu
+│
+├── DatabaseHelper.cs → Veritabanı bağlantısı
+├── Hashing.cs → Şifre hashleme
+├── KullaniciBilgisi.cs → Aktif kullanıcı bilgileri
+│
+├── Login.cs → Giriş ekranı
+├── Register.cs → Kayıt ekranı
+├── Form1.cs → Ana oyun ekranı
+│
+├── Resources/ → Görseller & ikonlar
+└── README.md
+
+---
+
+## 📸 Ekran Görüntüleri
+
+### Giriş Ekranı
+![Giriş Ekranı](screenshots/login.png)
+
+### Oyun Başlangıcı
+![Oyun Başlangıcı](screenshots/game.png)
+
+### Tahmin Ekranı
+![Tahmin Ekranı](screenshots/register.png)
 
 
 
+## 🎮 Oyun Kuralları
 
-    using System;
-    using System.Windows.Forms;
-    namespace SayıTahminOyunu
-    {
-    public partial class Form1 : Form
-    {
+- Bilgisayar, rakamları **birbirinden farklı** gizli bir sayı tutar
+- Kullanıcı tahmin yapar:
+  - 🟢 **Yeşil** → Rakam doğru & yeri doğru
+  - 🟡 **Sarı** → Rakam var ama yeri yanlış
+  - 🔴 **Kırmızı** → Rakam yok
+- Süre veya hak bittiğinde oyun sona erer
+- Doğru tahmin edildiğinde skor hesaplanır ve kaydedilir
 
-        private int gizliSayi; 
-        private int kalanHak;
-        public Form1()
-        {
-            InitializeComponent(); //form oluşturuluyor
-            btnTahminEt.Enabled = false; //başlangıçta tahmin et butonunu inaktif atıyorum.
-        }
-        //Girilen sayının rakamları birbirininden farklı mı kontrolü
-        private bool RakamlarFarkliMi(int sayi)
-        {
-            string s = sayi.ToString();
-            if (s[0] == s[1] || s[0] == s[2] || s[1] == s[2])
-            {
-                return false;
-                MessageBox.Show("Rakamlar farklı olmalıdır!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            return true;
-        }
+---
 
-        private (int artiPuan, int eksiPuan) HesaplaPuan(string gizliS, string tahminS)
-        {
-            int artiPuan = 0;
-            int eksiPuan = 0;
+## 📊 Skor Sistemi
 
-            // Hata yapmamak için hangi rakamın kullanıldığını işaretleriz.
-            bool[] gizliEslesme = new bool[3];
-            bool[] tahminEslesme = new bool[3];
+- Skor = **Kalan Hak × 100**
+- Süre bilgisi de skorla birlikte kaydedilir
+- Aynı hane sayısı için en iyi skorlar listelenir
 
-            //artı puanlarını hesapla
-            for (int i = 0; i < 3; i++)
-            {
-                if (gizliS[i] == tahminS[i])
-                {
-                    artiPuan++;
-                    //bu rakamlar kullanıldı eksi hesaplamasına dahil edilmeyecek
-                    gizliEslesme[i] = true;
-                    tahminEslesme[i] = true;
-                }
-            }
+---
 
-            // eksi puanlarını hesapla
-            for (int i = 0; i < 3; i++) 
-            {
-                //tahmindeki bu rakam daha önce artı almadıysa devam et
-                if (tahminEslesme[i] == false)
-                {
-                    for (int j = 0; j < 3; j++) //gizli sayının her rakamıyla karşılaştır
-                    {
-                        //gizlideki bu rakam (+) veya (-) almadıysa ve rakamlar aynıysa
-                        if (gizliEslesme[j] == false && tahminS[i] == gizliS[j])
-                        {
-                            eksiPuan++;
-                            gizliEslesme[j] = true; //bu gizli rakam kullanıldı
-                            break; //eşleşme bulundu bu tahmin rakamı için başka bir arama yapma
-                        }
-                    }
-                }
-            }
+## ⚙️ Kurulum
 
-            return (artiPuan, eksiPuan);
-        }
+1. Bu repoyu klonlayın:
+   ```bash
+   git clone https://github.com/ieyll/Say-TahminOyunu.git
+   
+2.Visual Studio ile projeyi açın
 
+3.SQL Server’da gerekli tabloları oluşturun
 
-       //Oyunu bitiren fonksiyon, tahmin et butonu inaktif 
-        private void OyunuBitir()
-        {
-            btnTahminEt.Enabled = false; 
-            btnBaslat.Text = "Yeniden Başlat";
-        }
+4.DatabaseHelper.cs içindeki connection string’i güncelleyin
 
-        //Oyunun bitip bitmediğini kontrol eden fonkiyon. Eğer artı pua 3 olduysa ekranda MessageBox ile "kazandınız" mesajı veriyor.Kaybettiyseniz "oyun  bitti"          uyarısı veriyor.
-        private void KontrolEtOyunBittiMi(int artiPuan, int tahminSayisi)
-        {
-            
-            if (artiPuan == 3)
-            {
-                MessageBox.Show($"TEBRİKLER! Gizli Sayı: {tahminSayisi}",
-                                "KAZANDINIZ!",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                OyunuBitir();
-                return;
-            }
+5.Projeyi çalıştırın ▶️
 
-            
-            if (kalanHak == 0)
-            {
-                MessageBox.Show($"Hakkınız bitti! Kaybettiniz. Gizli sayı şuydu: {gizliSayi}",
-                                "OYUN BİTTİ!",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                OyunuBitir();
-            }
-        }
+📌 Geliştirme Notları
 
+Proje eğitim ve portföy amaçlı geliştirilmiştir
 
-      
+Kod okunabilirliği ve modülerlik ön planda tutulmuştur
 
-        private void btnBaslat_Click(object sender, EventArgs e)
-        {
-            //Random bir sayı üretiyorum
-            Random rnd = new Random();
-            do
-            {
-                gizliSayi = rnd.Next(100, 1000);
-            } while (RakamlarFarkliMi(gizliSayi) == false);
-            kalanHak = 8;
+İleride:
 
-            lblKalanHak.Text = "Kalan Hak: " + kalanHak.ToString();
-            lstTahminler.Items.Clear();
-            txtTahmin.Clear();
-            txtTahmin.Focus();
+Leaderboard sayfası
 
-            btnTahminEt.Enabled = true;
-            btnBaslat.Text = "Yeniden Başlat";
-        }
+Oyun istatistikleri
 
-        private void btnTahminEt_Click(object sender, EventArgs e)
-        {
-            //Girişin sayısal olup olmadığını kontrol etme
-            string tahminText = txtTahmin.Text.Trim();
-            int tahminSayisi;
+Dark Mode
 
-            bool isNumber = int.TryParse(tahminText, out tahminSayisi);
+Online çok oyunculu yapı eklenebilir
 
-            if (!isNumber)
-            {
+👩‍💻 Geliştirici
 
-                MessageBox.Show("Lütfen sadece sayı giriniz.", "Hatalı Giriş", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTahmin.Clear();
-                txtTahmin.Focus();
-                return;
-            }
+Eylül İlbarış
+Bilgisayar Programcılığı Öğrencisi
 
-            //Girilen sayının 100 ile 1000 arasında 3 haneli bir sayı olup olmadığını kontrol etme
-            if (tahminSayisi < 100 || tahminSayisi > 999)
-            {
-
-                MessageBox.Show("Lütfen 100 ile 999 arasında 3 haneli bir sayı giriniz.", "Hatalı Giriş", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTahmin.Clear();
-                txtTahmin.Focus();
-                return;
-            }
-            string gizliS = gizliSayi.ToString();
-            string tahminS = tahminSayisi.ToString();
-
-            // Artı ve Eksi puanlarını hesapla
-            var (artiPuan, eksiPuan) = HesaplaPuan(gizliS, tahminS);
-
-            
-
-            kalanHak--;
-
-            
-            string sonucMetni = $"Tahmin: {tahminSayisi} → {artiPuan} + , {eksiPuan} -";
-            lstTahminler.Items.Add(sonucMetni);
-
-            lblKalanHak.Text = "Kalan Hak: " + kalanHak.ToString();
-
-            
-
-            KontrolEtOyunBittiMi(artiPuan, tahminSayisi);
-
-            
-            txtTahmin.Clear();
-            txtTahmin.Focus();
-        }
-
-
-        //textbox nesnesine tıkladığımızda metnini silmesi için enter özelliği atadım .
-        private void txtTahmin_Enter(object sender, EventArgs e)
-        {
-            TextBox t1 = (TextBox)sender;
-            t1.Text=string.Empty;
-        }
-    }
-}
-
+🔗 GitHub: https://github.com/ieyll
