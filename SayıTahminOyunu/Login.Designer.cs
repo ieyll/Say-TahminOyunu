@@ -121,9 +121,6 @@
             // 
             // pnlCard
             // 
-            this.pnlCard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlCard.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.pnlCard.Controls.Add(this.panel1);
             this.pnlCard.Controls.Add(this.pictureBox1);
@@ -131,7 +128,7 @@
             this.pnlCard.Controls.Add(this.label4);
             this.pnlCard.Controls.Add(this.btnGiris);
             this.pnlCard.Controls.Add(this.label1);
-            this.pnlCard.Location = new System.Drawing.Point(425, 124);
+            this.pnlCard.Location = new System.Drawing.Point(413, 119);
             this.pnlCard.Name = "pnlCard";
             this.pnlCard.Size = new System.Drawing.Size(583, 552);
             this.pnlCard.TabIndex = 5;

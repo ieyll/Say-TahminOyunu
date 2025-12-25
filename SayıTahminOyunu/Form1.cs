@@ -160,7 +160,7 @@ namespace SayıTahminOyunu
             if (tahminText.Length != haneSayisi)
             {
 
-                MessageBox.Show("Lütfen 100 ile 999 arasında 3 haneli bir sayı giriniz.", "Hatalı Giriş", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen 100 ile 999 arasında 3 haneli bigit status\r\nr sayı giriniz.", "Hatalı Giriş", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTahmin.Clear();
                 txtTahmin.Focus();
                 return;
