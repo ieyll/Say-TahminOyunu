@@ -1,4 +1,4 @@
-# 🎯 Sayı Tahmin Oyunu (C# WinForms)
+<img width="344" height="148" alt="scoreTable" src="https://github.com/user-attachments/assets/791f07d0-f026-47b4-8080-5773b6b27887" /># 🎯 Sayı Tahmin Oyunu (C# WinForms)
 
 Kullanıcı giriş/ kayıt sistemi bulunan, süre ve hak bazlı çalışan, skorları veritabanına kaydeden
 çok seviyeli bir **Sayı Tahmin Oyunu**.
@@ -95,7 +95,9 @@ Yeni bir veritabanı oluşturun (TahminOyunuDB).
 Veritabanı tablolarım da şu şekilde: 
 | Users Tablosu | Score Tablosu |
 | :---: | :---: |
-| ![User](SayıTahminOyunu/screenshots/userTable.png) | ![Score](SayıTahminOyunu/screenshots/scoreTable.png) |
+| ![User](SayıTahminOyunu/s<img width="353" height="167" alt="userTable" src="https://github.com/user-attachments/assets/ac14bba3-c7b8-4057-988a-e5835b2134da" />
+creenshots/userTable.png) | ![Score](SayıTahminOyunu/screenshots/scoreTa<img width="344" height="148" alt="scoreTable" src="https://github.com/user-attachments/assets/b5ac5d38-560b-49c1-b707-a308966f4fd0" />
+ble.png) |
 
 
 
