@@ -95,7 +95,7 @@ Yeni bir veritabanı oluşturun (TahminOyunuDB).
 Veritabanı tablolarım da şu şekilde: 
 | Users Tablosu | Score Tablosu |
 | :---: | :---: |
-| ![User](SayıTahminOyunu/screenshots/userTablosu.png) | ![Score](SayıTahminOyunu/screenshots/scoreTablosu.png) |
+| ![User](SayıTahminOyunu/screenshots/userTable.png) | ![Score](SayıTahminOyunu/screenshots/scoreTable.png) |
 
 
 
