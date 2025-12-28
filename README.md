@@ -1,6 +1,6 @@
 # 🎯 Sayı Tahmin Oyunu (C# WinForms)
 
-Bu proje, kullanıcıdan alınan sayıya göre rastgele üretilen bir sayının tahmin edilmesini amaçlayan bir sayı tahmin oyunu geliştirilmiştir.**
+Bu proje, kullanıcıdan alınan sayıya göre rastgele üretilen bir sayının tahmin edilmesini amaçlayan bir sayı tahmin oyunu geliştirilmiştir.
 
 Bu projede, **C# WinForms**, **SQL Server** ve temel **OOP prensipleri** kullanılmıştır..
 
